@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ivan Mustac — UI/UX Designer</title>
+  <meta name="description" content="Ivan Mustac — UI/UX Designer (Figma). Portfolio showcasing selected design work, process, and projects." />
+
+  <!-- Open Graph (dummy placeholders) -->
+  <meta property="og:title" content="Ivan Mustac — UI/UX Designer" />
+  <meta property="og:description" content="Designing experiences that feel human." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/og-cover.jpg" />
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    :root{
+      --ink: #0b1b3a;
+      --muted: #5c6c88;
+      --brand: #1e88ff;     /* primary blue */
+      --brand2:#6dd5ff;     /* light blue glow */
+      --card: #0f2553;
+      --bg: #f6f9ff;
+      --ring: rgba(30,136,255,.25);
+    }
+
+    html { scroll-behavior: smooth; }
+    body{
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: radial-gradient(900px 500px at 15% 5%, rgba(109,213,255,.25), transparent 60%),
+                  radial-gradient(900px 500px at 85% 15%, rgba(30,136,255,.18), transparent 55%),
+                  var(--bg);
+    }
+
+    /* Navbar */
+    .navbar{
+      backdrop-filter: blur(10px);
+      background: rgba(246,249,255,.7);
+      border-bottom: 1px solid rgba(12,30,60,.07);
+    }
+    .nav-link { color: var(--ink); opacity: .85; }
+    .nav-link:hover { opacity: 1; color: var(--brand); }
+    .btn-brand{
+      background: linear-gradient(135deg, var(--brand), #0b63f6);
+      border: none;
+      box-shadow: 0 10px 24px rgba(30,136,255,.25);
+    }
+    .btn-brand:hover{ filter: brightness(1.03); transform: translateY(-1px); }
+    .btn-outline-brand{
+      border-color: rgba(30,136,255,.35);
+      color: var(--brand);
+    }
+    .btn-outline-brand:hover{
+      background: rgba(30,136,255,.08);
+      border-color: rgba(30,136,255,.45);
+      color: #0b63f6;
+    }
+
+    /* Hero */
+    .hero{
+      padding-top: 7.5rem;
+      padding-bottom: 4rem;
+    }
+    .badge-soft{
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      padding:.45rem .75rem;
+      border-radius: 999px;
+      background: rgba(30,136,255,.08);
+      border: 1px solid rgba(30,136,255,.18);
+      color: #0b63f6;
+      font-weight: 600;
+      font-size: .9rem;
+    }
+    .headline{
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+    .lead{
+      color: var(--muted);
+    }
+    .glass{
+      border-radius: 1.25rem;
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(12,30,60,.08);
+      box-shadow: 0 18px 60px rgba(12,30,60,.08);
+    }
+
+    /* Avatar */
+    .avatar{
+      width: 110px;
+      height: 110px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(12,30,60,.1);
+      box-shadow: 0 14px 40px rgba(12,30,60,.12);
+      background: linear-gradient(135deg, rgba(30,136,255,.14), rgba(109,213,255,.18));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: rgba(11,99,246,.7);
+      font-weight: 800;
+      font-size: 2rem;
+      user-select:none;
+    }
+    .avatar img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display:block;
+    }
+
+    /* Section titles */
+    .section{
+      padding: 4.25rem 0;
+    }
+    .section-title{
+      letter-spacing: -0.02em;
+    }
+    .section-subtitle{
+      color: var(--muted);
+      max-width: 56ch;
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid rgba(12,30,60,.08);
+      border-radius: 1.25rem;
+      box-shadow: 0 18px 60px rgba(12,30,60,.06);
+    }
+    .card-hover:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 22px 70px rgba(12,30,60,.08);
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:.4rem;
+      padding:.35rem .6rem;
+      background: rgba(30,136,255,.08);
+      border: 1px solid rgba(30,136,255,.18);
+      color: #0b63f6;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: .85rem;
+      margin: .2rem .25rem .2rem 0;
+      white-space: nowrap;
+    }
+
+    /* Project thumbnails */
+    .project-thumb{
+      aspect-ratio: 16/10;
+      background: linear-gradient(135deg, rgba(30,136,255,.12), rgba(109,213,255,.18));
+      border-bottom: 1px solid rgba(12,30,60,.08);
+      border-top-left-radius: 1.25rem;
+      border-top-right-radius: 1.25rem;
+      overflow: hidden;
+    }
+    .project-thumb img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display:block;
+    }
+
+    /* Carousel inside cards & modals */
+    .carousel-inner{
+      border-radius: 1.0rem;
+      overflow: hidden;
+      border: 1px solid rgba(12,30,60,.08);
+    }
+    .carousel-item img{
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+    }
+    @media (max-width: 576px){
+      .carousel-item img{ height: 260px; }
+    }
+
+    /* Footer */
+    footer{
+      padding: 2.5rem 0;
+      border-top: 1px solid rgba(12,30,60,.08);
+      color: var(--muted);
+    }
+
+    /* Small motion */
+    .lift { transition: transform .18s ease, box-shadow .18s ease, filter .18s ease; }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#top" style="letter-spacing:-0.02em;">
+        <span class="text-primary">Ivan</span> Mustac
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-sm btn-brand text-white lift" href="https://example.com" target="_blank" rel="noreferrer">
+              <i class="bi bi-download me-1"></i> Download CV
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header id="top" class="hero">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <div class="badge-soft mb-3">
+            <i class="bi bi-stars"></i>
+            UI/UX Designer • Figma
+          </div>
+
+          <h1 class="display-4 fw-bold headline mb-3">
+            Designing experiences that feel human.
+          </h1>
+
+          <p class="lead mb-4">
+            Hi, I’m <span class="fw-semibold">Ivan Mustac</span>. I create clean, user-centered interfaces and
+            thoughtful UX flows—balancing aesthetics, clarity, and real-world usability.
+          </p>
+
+          <div class="d-flex flex-wrap gap-2">
+            <a class="btn btn-brand text-white lift px-4" href="#projects">
+              View Projects <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+            <a class="btn btn-outline-brand lift px-4" href="#contact">
+              Contact Me
+            </a>
+            <a class="btn btn-outline-brand lift px-4" href="https://example.com" target="_blank" rel="noreferrer">
+              <i class="bi bi-github me-1"></i> GitHub
+            </a>
+          </div>
+
+          <div class="mt-4 d-flex flex-wrap align-items-center gap-2">
+            <span class="chip"><i class="bi bi-check2-circle"></i> Wireframes</span>
+            <span class="chip"><i class="bi bi-check2-circle"></i> Prototypes</span>
+            <span class="chip"><i class="bi bi-check2-circle"></i> Design Systems</span>
+            <span class="chip"><i class="bi bi-check2-circle"></i> Responsive UI</span>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="glass p-4">
+            <div class="d-flex align-items-center gap-3">
+              <div class="avatar" title="Add your photo later">
+                IM
+                <!-- When you upload photo, replace with:
+                <img src="assets/img/profile.jpg" alt="Ivan Mustac portrait">
+                -->
+              </div>
+              <div>
+                <h2 class="h4 fw-bold mb-1">Ivan Mustac</h2>
+                <p class="mb-0 text-secondary">UI/UX Designer (Figma)</p>
+                <div class="mt-2 d-flex gap-2">
+                  <a class="btn btn-sm btn-outline-brand lift" href="https://example.com" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                    <i class="bi bi-linkedin"></i>
+                  </a>
+                  <a class="btn btn-sm btn-outline-brand lift" href="https://example.com" target="_blank" rel="noreferrer" aria-label="GitHub">
+                    <i class="bi bi-github"></i>
+                  </a>
+                  <a class="btn btn-sm btn-outline-brand lift" href="https://example.com" target="_blank" rel="noreferrer" aria-label="Figma">
+                    <i class="bi bi-bezier2"></i>
+                  </a>
+                  <a class="btn btn-sm btn-outline-brand lift" href="#contact" aria-label="Email">
+                    <i class="bi bi-envelope"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="row g-3">
+              <div class="col-6">
+                <div class="p-3 rounded-4" style="background: rgba(30,136,255,.06); border: 1px solid rgba(30,136,255,.14);">
+                  <div class="fw-bold">3+</div>
+                  <div class="text-secondary small">Featured projects</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="p-3 rounded-4" style="background: rgba(109,213,255,.10); border: 1px solid rgba(30,136,255,.14);">
+                  <div class="fw-bold">Figma</div>
+                  <div class="text-secondary small">Primary tool</div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="p-3 rounded-4" style="background: rgba(255,255,255,.75); border: 1px solid rgba(12,30,60,.08);">
+                  <div class="text-secondary small mb-1">Currently available for</div>
+                  <div class="fw-semibold">UI/UX • Website UI • App Prototypes • Design Systems</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="row align-items-start g-4">
+        <div class="col-lg-5">
+          <h2 class="fw-bold section-title">About</h2>
+          <p class="section-subtitle">
+            I design with empathy—focusing on clarity, usability, and visual polish. My approach is collaborative,
+            iterative, and grounded in real user needs.
+          </p>
+        </div>
+        <div class="col-lg-7">
+          <div class="card p-4">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="p-3 rounded-4" style="background: rgba(30,136,255,.06); border: 1px solid rgba(30,136,255,.12);">
+                  <div class="fw-bold mb-1"><i class="bi bi-compass me-1"></i> What I value</div>
+                  <div class="text-secondary">Simple flows, consistent UI, and delightful details.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 rounded-4" style="background: rgba(109,213,255,.10); border: 1px solid rgba(30,136,255,.12);">
+                  <div class="fw-bold mb-1"><i class="bi bi-layers me-1"></i> What I deliver</div>
+                  <div class="text-secondary">Wireframes → Hi-fi UI → Prototypes → Handoff-ready assets.</div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="p-3 rounded-4" style="background: rgba(255,255,255,.85); border: 1px solid rgba(12,30,60,.08);">
+                  <div class="fw-bold mb-1"><i class="bi bi-lightning-charge me-1"></i> Quick note</div>
+                  <div class="text-secondary">
+                    This portfolio is built to scale: you can add more projects, images, and case studies without changing the design.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- card -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="section pt-0">
+    <div class="container">
+      <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-3">
+        <div>
+          <h2 class="fw-bold section-title mb-1">Skills & Tools</h2>
+          <p class="section-subtitle mb-0">A practical toolkit for designing clean, responsive experiences.</p>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-lg-4">
+          <div class="card p-4 h-100">
+            <div class="fw-bold mb-2"><i class="bi bi-bezier2 me-1"></i> Design</div>
+            <div class="d-flex flex-wrap">
+              <span class="chip">Figma</span>
+              <span class="chip">Wireframing</span>
+              <span class="chip">Prototyping</span>
+              <span class="chip">UI Systems</span>
+              <span class="chip">Accessibility</span>
+              <span class="chip">Responsive UI</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card p-4 h-100">
+            <div class="fw-bold mb-2"><i class="bi bi-diagram-3 me-1"></i> UX</div>
+            <div class="d-flex flex-wrap">
+              <span class="chip">User Flows</span>
+              <span class="chip">Information Architecture</span>
+              <span class="chip">Heuristic Review</span>
+              <span class="chip">Journey Mapping</span>
+              <span class="chip">Usability Thinking</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card p-4 h-100">
+            <div class="fw-bold mb-2"><i class="bi bi-box-arrow-in-up-right me-1"></i> Delivery</div>
+            <div class="d-flex flex-wrap">
+              <span class="chip">Handoff</span>
+              <span class="chip">Style Guides</span>
+              <span class="chip">Components</span>
+              <span class="chip">Specs</span>
+              <span class="chip">Collaboration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-3">
+        <div>
+          <h2 class="fw-bold section-title mb-1">Projects</h2>
+          <p class="section-subtitle mb-0">
+            Three selected works. Each project includes multiple images and a detailed description.
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <!-- Project 1 -->
+        <div class="col-lg-4">
+          <div class="card h-100 lift card-hover">
+            <div class="project-thumb">
+              <img src="assets/img/project-1/cover.jpg" alt="Project 1 cover (placeholder)">
+            </div>
+            <div class="card-body p-4">
+              <h3 class="h5 fw-bold mb-1">Project One (Placeholder)</h3>
+              <p class="text-secondary mb-3">
+                Short description: what you designed and why it matters (replace later).
+              </p>
+              <div class="d-flex flex-wrap mb-3">
+                <span class="chip">Figma</span>
+                <span class="chip">Mobile</span>
+                <span class="chip">Prototype</span>
+              </div>
+              <div class="d-flex flex-wrap gap-2">
+                <button class="btn btn-brand text-white lift" data-bs-toggle="modal" data-bs-target="#project1Modal">
+                  View Details
+                </button>
+                <a class="btn btn-outline-brand lift" href="https://example.com" target="_blank" rel="noreferrer">
+                  Live / Case Study
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="col-lg-4">
+          <div class="card h-100 lift card-hover">
+            <div class="project-thumb">
+              <img src="assets/img/project-2/cover.jpg" alt="Project 2 cover (placeholder)">
+            </div>
+            <div class="card-body p-4">
+              <h3 class="h5 fw-bold mb-1">Project Two (Placeholder)</h3>
+              <p class="text-secondary mb-3">
+                Short description: highlight the problem and your UI/UX solution (replace later).
+              </p>
+              <div class="d-flex flex-wrap mb-3">
+                <span class="chip">Figma</span>
+                <span class="chip">Web</span>
+                <span class="chip">Design System</span>
+              </div>
+              <div class="d-flex flex-wrap gap-2">
+                <button class="btn btn-brand text-white lift" data-bs-toggle="modal" data-bs-target="#project2Modal">
+                  View Details
+                </button>
+                <a class="btn btn-outline-brand lift" href="https://example.com" target="_blank" rel="noreferrer">
+                  Live / Case Study
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="col-lg-4">
+          <div class="card h-100 lift card-hover">
+            <div class="project-thumb">
+              <img src="assets/img/project-3/cover.jpg" alt="Project 3 cover (placeholder)">
+            </div>
+            <div class="card-body p-4">
+              <h3 class="h5 fw-bold mb-1">Project Three (Placeholder)</h3>
+              <p class="text-secondary mb-3">
+                Short description: focus on flow improvements or visual redesign outcomes (replace later).
+              </p>
+              <div class="d-flex flex-wrap mb-3">
+                <span class="chip">Figma</span>
+                <span class="chip">UX Flow</span>
+                <span class="chip">UI Polish</span>
+              </div>
+              <div class="d-flex flex-wrap gap-2">
+                <button class="btn btn-brand text-white lift" data-bs-toggle="modal" data-bs-target="#project3Modal">
+                  View Details
+                </button>
+                <a class="btn btn-outline-brand lift" href="https://example.com" target="_blank" rel="noreferrer">
+                  Live / Case Study
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- row -->
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section pt-0">
+    <div class="container">
+      <div class="row g-3 align-items-stretch">
+        <div class="col-lg-6">
+          <div class="card p-4 h-100">
+            <h2 class="h4 fw-bold mb-2">Let’s work together</h2>
+            <p class="text-secondary mb-4">
+              Have a project in mind? I’d love to hear about it and help design something clear, modern, and user-friendly.
+            </p>
+
+            <div class="d-grid gap-2">
+              <a class="btn btn-brand text-white lift" href="mailto:ivan@example.com">
+                <i class="bi bi-envelope me-1"></i> Email Me
+              </a>
+              <a class="btn btn-outline-brand lift" href="https://example.com" target="_blank" rel="noreferrer">
+                <i class="bi bi-linkedin me-1"></i> LinkedIn
+              </a>
+              <a class="btn btn-outline-brand lift" href="https://example.com" target="_blank" rel="noreferrer">
+                <i class="bi bi-bezier2 me-1"></i> Figma / Portfolio
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card p-4 h-100">
+            <h2 class="h4 fw-bold mb-2">Quick info</h2>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="p-3 rounded-4" style="background: rgba(30,136,255,.06); border: 1px solid rgba(30,136,255,.12);">
+                  <div class="text-secondary small">Email</div>
+                  <div class="fw-semibold">ivan@example.com</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 rounded-4" style="background: rgba(109,213,255,.10); border: 1px solid rgba(30,136,255,.12);">
+                  <div class="text-secondary small">Location</div>
+                  <div class="fw-semibold">TBD</div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="p-3 rounded-4" style="background: rgba(255,255,255,.85); border: 1px solid rgba(12,30,60,.08);">
+                  <div class="text-secondary small mb-1">Social</div>
+                  <div class="d-flex flex-wrap gap-2">
+                    <a class="btn btn-sm btn-outline-brand lift" href="https://example.com" target="_blank" rel="noreferrer">
+                      <i class="bi bi-github me-1"></i> GitHub
+                    </a>
+                    <a class="btn btn-sm btn-outline-brand lift" href="https://example.com" target="_blank" rel="noreferrer">
+                      <i class="bi bi-linkedin me-1"></i> LinkedIn
+                    </a>
+                    <a class="btn btn-sm btn-outline-brand lift" href="https://example.com" target="_blank" rel="noreferrer">
+                      <i class="bi bi-bezier2 me-1"></i> Figma
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <div>© <span id="year"></span> Ivan Mustac. All rights reserved.</div>
+      <div class="d-flex gap-3">
+        <a class="text-decoration-none" href="#top" style="color: var(--muted);">Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =======================
+       Project Modals
+  ======================== -->
+
+  <!-- Modal 1 -->
+  <div class="modal fade" id="project1Modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content" style="border-radius: 1.25rem; overflow:hidden;">
+        <div class="modal-header border-0">
+          <div>
+            <h3 class="modal-title fw-bold mb-0">Project One (Placeholder)</h3>
+            <div class="text-secondary">UI/UX • Figma • Mobile Prototype</div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body pt-0">
+          <div id="p1Carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="assets/img/project-1/01.jpg" alt="Project 1 image 1 (placeholder)">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project-1/02.jpg" alt="Project 1 image 2 (placeholder)">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project-1/03.jpg" alt="Project 1 image 3 (placeholder)">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#p1Carousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#p1Carousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h4 class="h6 fw-bold">Overview</h4>
+            <p class="text-secondary">
+              Replace this with the real project story: what the product is, who it’s for, and what you improved.
+            </p>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="p-3 rounded-4" style="background: rgba(30,136,255,.06); border: 1px solid rgba(30,136,255,.12);">
+                  <div class="fw-bold mb-1">What I did</div>
+                  <ul class="text-secondary mb-0">
+                    <li>UX flow + key screens</li>
+                    <li>Hi-fi UI design</li>
+                    <li>Interactive prototype</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 rounded-4" style="background: rgba(109,213,255,.10); border: 1px solid rgba(30,136,255,.12);">
+                  <div class="fw-bold mb-1">Highlights</div>
+                  <ul class="text-secondary mb-0">
+                    <li>Clear navigation</li>
+                    <li>Consistent spacing & typography</li>
+                    <li>Mobile-first layout</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <a class="btn btn-brand text-white lift" href="https://example.com" target="_blank" rel="noreferrer">
+                View Live / Case Study
+              </a>
+              <a class="btn btn-outline-brand lift" href="https://example.com" target="_blank" rel="noreferrer">
+                View Figma
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2 -->
+  <div class="modal fade" id="project2Modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content" style="border-radius: 1.25rem; overflow:hidden;">
+        <div class="modal-header border-0">
+          <div>
+            <h3 class="modal-title fw-bold mb-0">Project Two (Placeholder)</h3>
+            <div class="text-secondary">UI/UX • Figma • Web Design</div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body pt-0">
+          <div id="p2Carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="assets/img/project-2/01.jpg" alt="Project 2 image 1 (placeholder)">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project-2/02.jpg" alt="Project 2 image 2 (placeholder)">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project-2/03.jpg" alt="Project 2 image 3 (placeholder)">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#p2Carousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#p2Carousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h4 class="h6 fw-bold">Overview</h4>
+            <p class="text-secondary">
+              Replace with your web UI project details: goal, constraints, and improvements made.
+            </p>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="p-3 rounded-4" style="background: rgba(30,136,255,.06); border: 1px solid rgba(30,136,255,.12);">
+                  <div class="fw-bold mb-1">What I did</div>
+                  <ul class="text-secondary mb-0">
+                    <li>IA + layout system</li>
+                    <li>Component patterns</li>
+                    <li>Responsive variants</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 rounded-4" style="background: rgba(109,213,255,.10); border: 1px solid rgba(30,136,255,.12);">
+                  <div class="fw-bold mb-1">Highlights</div>
+                  <ul class="text-secondary mb-0">
+                    <li>Clean grid structure</li>
+                    <li>Readable typography</li>
+                    <li>Consistent CTA styling</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <a class="btn btn-brand text-white lift" href="https://example.com" target="_blank" rel="noreferrer">
+                View Live / Case Study
+              </a>
+              <a class="btn btn-outline-brand lift" href="https://example.com" target="_blank" rel="noreferrer">
+                View Figma
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3 -->
+  <div class="modal fade" id="project3Modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content" style="border-radius: 1.25rem; overflow:hidden;">
+        <div class="modal-header border-0">
+          <div>
+            <h3 class="modal-title fw-bold mb-0">Project Three (Placeholder)</h3>
+            <div class="text-secondary">UI/UX • Figma • UX Flow & UI Polish</div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body pt-0">
+          <div id="p3Carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="assets/img/project-3/01.jpg" alt="Project 3 image 1 (placeholder)">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project-3/02.jpg" alt="Project 3 image 2 (placeholder)">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project-3/03.jpg" alt="Project 3 image 3 (placeholder)">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#p3Carousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#p3Carousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h4 class="h6 fw-bold">Overview</h4>
+            <p class="text-secondary">
+              Replace with your third project narrative: what was confusing, what you changed, and how the experience improved.
+            </p>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="p-3 rounded-4" style="background: rgba(30,136,255,.06); border: 1px solid rgba(30,136,255,.12);">
+                  <div class="fw-bold mb-1">What I did</div>
+                  <ul class="text-secondary mb-0">
+                    <li>Flow simplification</li>
+                    <li>UI consistency pass</li>
+                    <li>Prototype updates</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 rounded-4" style="background: rgba(109,213,255,.10); border: 1px solid rgba(30,136,255,.12);">
+                  <div class="fw-bold mb-1">Highlights</div>
+                  <ul class="text-secondary mb-0">
+                    <li>Clearer hierarchy</li>
+                    <li>Less cognitive load</li>
+                    <li>Modern visual polish</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <a class="btn btn-brand text-white lift" href="https://example.com" target="_blank" rel="noreferrer">
+                View Live / Case Study
+              </a>
+              <a class="btn btn-outline-brand lift" href="https://example.com" target="_blank" rel="noreferrer">
+                View Figma
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
